@@ -33,10 +33,10 @@ params.class = class;
 % Prepare data for NRSfM
 data = prepPascalData(class);
 
-% Run NRSFM and cache model / Load cached models if they exist
+% Run NRSFM and cache model / Load cached models
 nrsfmModel = runTrainNRSFM(data,class);
 
-% Run and cache basis shape model
+%% Run and cache basis shape model
 basisShapeModel = trainBasisShapes(nrsfmModel, class, exptID);
 
 end

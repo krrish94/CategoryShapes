@@ -1,11 +1,15 @@
 function params = get_params(paramStruct)
-%Set up parameter structure for the model
+% GET_PARAMS  Set up parameter structure for the model
 
-%% If global parameters exist return
+
 if(nargin<1)
     paramStruct = {};
 end
+
+% Declare global variables
 globals
+
+% If global parameters exist return them
 if(exist('params','var'))
     if(isfield(params,'nrsfm') && isfield(params,'opt') && isfield(params,'vis'))
         params = params;
@@ -13,7 +17,9 @@ if(exist('params','var'))
     end
 end
 
+
 %% NRSFM Parameters
+
 nrsfm = struct;
 nrsfm.minKps = 5; %For PASCAL
 nrsfm.bboxthresh = 0.01; %For PASCAL
@@ -26,6 +32,7 @@ nrsfm.debug = 0;
 nrsfm.debugInterval = 50;
 nrsfm.occ_lambda = 1;
 nrsfm.flip = 1;
+
 
 %% BASIS SHAPE MODEL PARAMETERS
 opt = struct;
@@ -80,11 +87,15 @@ vis.minPointsInMesh = 1000;
 vis.numFacesInMesh = [3000,3000,NaN,2500,NaN,2500,2500,NaN,4000,NaN,...
     NaN,NaN,NaN,3500,NaN,NaN,NaN,2000,2500,1500];
 
+
 %% SIRFS
 sirfs = struct;
 
+
 %% Returning Params
+
 global params
+
 params.nrsfm = nrsfm;
 params.vis = vis;
 params.opt = opt;
