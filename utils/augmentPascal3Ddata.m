@@ -52,9 +52,9 @@ for i = 1:N
         if(objectInd)
             % Viewpoint data for the current instance
             viewpoint = record.objects(objectInd).viewpoint;
-            
+            % Get rotation matrix from viewpoint
             [rot,euler] = viewpointToRots(viewpoint);
-            data3d(i).rotP3d=rot;
+            data3d(i).rotP3d = rot;
             data3d(i).euler=euler;
             data3d(i).subtype = record.objects(objectInd).cad_index;
             data3d(i).subtype = subtypeClusters{cInd}(data3d(i).subtype);
@@ -84,8 +84,11 @@ end
 
 function [R,euler] = viewpointToRots(vp)
 
+% Convert viewpoint (Euler angles) to radians
 euler = [vp.azimuth vp.elevation vp.theta]' .* pi/180;
+% Matrix to rotate by -pi about the X-axis
 rotX = diag([1,-1,-1]);
+% 
 R1 = angle2dcm(euler(3), euler(2)-pi/2, -euler(1),'ZXZ'); %took a lot of work to figure this formula out !!
 euler = euler([3 2 1]);
 R = rotX*R1';

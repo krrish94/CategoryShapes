@@ -24,6 +24,7 @@ pascal_data = augmentPascal3Ddata(pascal_data, class);
 
 % Create train test split
 data.train = filterData(pascal_data,trainIds);
+length(data.train)
 data.test = filterData(pascal_data,valIds,1); % remove flipped instances
 
 % Compute actual poses from pose features for test set

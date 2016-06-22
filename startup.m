@@ -16,7 +16,8 @@ PASCAL_DIR = '/home/km/ViewpointsAndKeypoints/data/PASCAL3D/PASCAL/VOCdevkit/VOC
 PASCAL3Ddir = '/home/km/ViewpointsAndKeypoints/data/PASCAL3D/';
 
 folders = {'main','sirfsPrior/','nrsfm/','evaluation/'...
-    'visualize/','basisShapes/','utils/', 'external/SIRFS'};
+    'visualize/','basisShapes/','utils/', 'external/SIRFS', ...
+    'experiments_km'};
 for i=1:length(folders)
     addpath(genpath(folders{i}));
 end
