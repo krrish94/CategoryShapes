@@ -1,5 +1,8 @@
 function data = prepPascalData(class)
-%% Setup the training data struct
+% PREPPASCALDATA  Setup the training data struct for Pascal data
+
+
+% Declare global variables
 globals;
 
 % Change this if you want to use your own data
@@ -17,11 +20,11 @@ load(dataFile);
 % Augment with PASCAL3D data - used for evaluation to align
 % learned models to PASCAL 3D frame
 % Comment this if you dont want to align to PASCAL 3D frame.
-pascal_data = augmentPascal3Ddata(pascal_data,class);
+pascal_data = augmentPascal3Ddata(pascal_data, class);
 
 % Create train test split
 data.train = filterData(pascal_data,trainIds);
-data.test = filterData(pascal_data,valIds,1); %remove flipped instances
+data.test = filterData(pascal_data,valIds,1); % remove flipped instances
 
 % Compute actual poses from pose features for test set
 %data.test = computePosePredictions(data.test);
