@@ -21,13 +21,7 @@ bbox = train.bbox(curIdx,:);
 kps2d = train_model.points2([curIdx,numTrain+curIdx],:);
 
 % Retain only non-NaN keypoints
-% isnan(kps2d) returns the set of indices that are NaN. We sum them along
-% each col. In order for a column to be valid, the number of NaNs in that
-% column must sum to 0.
-kps2d = kps2d(:,sum(isnan(kps2d),1) == 0);
-
-% Get 3D locations of keypoints
-kps3d = train_model.points3([curIdx, numTrain+curIdx, (2*numTrain)+curIdx],:);
+kps2d(:,find(sum(isnan(kps2d),1) ~= 2))
 
 % Display the image and the bbox
 imshow(im);
@@ -42,5 +36,3 @@ clear curIdx
 clear im
 clear bbox
 % clear kps2d
-clear kps3d
-clear numTrain

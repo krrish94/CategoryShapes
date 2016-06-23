@@ -39,17 +39,12 @@ if(nargin < 3)
     flip = 0;
 end
 
-% Concatenate keypoints (2D) from input data
+% Concatenate keypoints
 kps  = cat(3,data(:).kps);
-% Concatenate all bboxes
 allbbox = vertcat(data(:).pascal_bbox);
-% Concatenate all imsize arrays
 imsizes = vertcat(data(:).imsize);
-% Concatenate all img id arrays
 image_ids = {data(:).voc_image_id}';
-% Concatenate all rec id arrays
 rec_ids = [data(:).voc_rec_id]';
-% Concatenate segmentation mask data
 try
     poly_x = {data(:).poly_x}';
     poly_y = {data(:).poly_y}';
@@ -57,29 +52,23 @@ catch
     masks = {data(:).mask}';
 end
 
-% Concatenate subtype data, if available
 if(isfield(data(1),'subtype'))
     subtype = [data(:).subtype]';
 end
 
-% Concatenate rotation data from Pascal 3D annotations, if available
 if(isfield(data(1),'rotP3d'))
     rotP3d =  {data(:).rotP3d}';
 else
     rotP3d = {};
 end
 
-% Concatenate rotation predictions, if available
 if(isfield(data(1),'rotationPred'))
     rotationPred = {data(:).rotationPred}';
 end
 
-% Concatenate subtype predictions, if available
 if(isfield(data(1),'subtypePred'))
     subtypePred = vertcat(data(:).subtypePred);
 end
-
-% If 'flip' is true, concatenate flip data
 if(flip)
     flips = vertcat(data(:).flip);
 end
