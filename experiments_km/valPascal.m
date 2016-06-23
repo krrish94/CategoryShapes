@@ -29,6 +29,8 @@ kps2d = kps2d(:,sum(isnan(kps2d),1) == 0);
 % Get 3D locations of keypoints
 kps3d = train_model.points3([curIdx, numTrain+curIdx, (2*numTrain)+curIdx],:);
 
+% Get camera intrinsics
+
 % Display the image and the bbox
 imshow(im);
 hold on;
@@ -42,5 +44,5 @@ clear curIdx
 clear im
 clear bbox
 % clear kps2d
-clear kps3d
+% vclear kps3d
 clear numTrain
