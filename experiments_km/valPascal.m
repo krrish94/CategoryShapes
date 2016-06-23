@@ -5,9 +5,15 @@
 % Declaring global variables
 globals;
 
+% % Run the following set of lines once to set up all required variables
+% class = 'car';
+% load(fullfile(cachedir, class, 'shapeModelNRSFM'));
+% data = prepPascalData(class);
+% [train,~] = prep_data(data.train,1,params.nrsfm.flip);
+
 % PASCAL_DIR contains the path to the directory containing Pascal images
 % Load an image from the directory
-curIdx = 1;
+curIdx = 4;
 
 % Get the number of training samples
 numTrain = length(train_model.rotP3d);

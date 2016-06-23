@@ -28,6 +28,6 @@ length(data.train)
 data.test = filterData(pascal_data,valIds,1); % remove flipped instances
 
 % Compute actual poses from pose features for test set
-%data.test = computePosePredictions(data.test);
+% data.test = computePosePredictions(data.test);
 
 end
