@@ -27,7 +27,8 @@ notFound = 0;
 for i = 1:N
     % Read in the 2D bounding box information
     bbox = data(i).bbox;
-    % If it is to be flipped, compute the flipped bounding box
+    % If the image were to be flipped, compute the flipped bounding box,
+    % given the bounding box in the original image.
     if(data(i).flip)
         bbox(1) = data(i).imsize(2) + 1 - bbox(1) - bbox(3);
     end
@@ -56,7 +57,14 @@ for i = 1:N
             [rot,euler] = viewpointToRots(viewpoint);
             data3d(i).rotP3d = rot;
             data3d(i).euler=euler;
+            % Get the index of the cad model corresponding to the current
+            % detection. Note that the CAD model is an approximation. Among
+            % the available CAD models, we choose the one that is most
+            % similar (visually) to the current instance.
             data3d(i).subtype = record.objects(objectInd).cad_index;
+            % For a more coarse (broad) subtype assignment, we cluster
+            % subtypes. We assign the current instance to the subtype
+            % cluster that the CAD model belongs to.
             data3d(i).subtype = subtypeClusters{cInd}(data3d(i).subtype);
         end
         data3d(i).objectIndP3d = objectInd;

@@ -43,8 +43,10 @@ function [P3, S_bar, V, RO, Tr, Z, sigma_sq, phi, Q, mu0, sigma0, c] =...
 %  sigma0      - initial state variance
 %  c - scale coefficients                   T X 1 matrix
 
+
 %% Parsing passed parameters
 params = get_params();
+
 
 %% Checking Dimensions
 if mod(size(P,1), 1) ~= 0,
@@ -61,6 +63,8 @@ if mod(K, 1) ~= 0,
    fprintf('Error: K must be an integer value\n');
    return;
 end
+
+
 %% Initialization for Tr, S_bar, R, c
 
 [T, J] = size(MD);
@@ -93,6 +97,7 @@ for t = 1:T,
    R(t,:) = RO_approx(1,:);
    R(t+T,:) = RO_approx(2,:);
 end
+
 
 %% Initializations for deformation shapes and weights
 % given the initial estimates of rotation, translation and shape average, it initializes

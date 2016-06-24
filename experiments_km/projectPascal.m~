@@ -1,0 +1,35 @@
+function projectPascal
+% PROJECTPASCAL  Testing code for loading a PASCAL3D CAD model and
+% projecting it onto an image
+
+
+% Storing important paths in here
+paths.pascal3d = '/home/km/ViewpointsAndKeypoints/data/PASCAL3D';
+paths.pascalImages = fullfile(paths.pascal3d, 'Images/car_pascal');
+paths.pascalAnnotations = fullfile(paths.pascal3d, 'Annotations/car_pascal');
+paths.imagenetImages = fullfile(paths.pascal3d, 'Images/car_imagenet');
+paths.imagenetAnnotations = fullfile(paths.pascal3d, 'Annotations/car_imagenet');
+paths.pascalVOCdevkit = fullfile(paths.pascal3d, 'PASCAL/VOCdevkit');
+paths.pathCAD = fullfile(paths.pascal3d, 'CAD/car.mat');
+
+% Add the VOC code directory to path
+addpath(fullfile(paths.pascalVOCdevkit, 'VOCcode'));
+
+% Load the CAD model mat file
+load(paths.pathCAD)
+cads = car;
+
+% Load annotation file list
+files = dir(fullfile(paths.pascalAnnotations));
+
+figure(1);
+cmap = colormap(jet);
+% Skipping the first two files in the directory listing as they correspond
+% to . and .. respectively
+for imgIdx = 3:3
+    fileName = files(imgIdx).name;
+    [pathstr, name, ext
+end
+
+
+end
