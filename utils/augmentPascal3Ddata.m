@@ -94,7 +94,7 @@ function [R,euler] = viewpointToRots(vp)
 
 % Convert viewpoint (Euler angles) to radians
 euler = [vp.azimuth vp.elevation vp.theta]' .* pi/180;
-% Matrix to rotate by -pi about the X-axis
+% Matrix to rotate by pi about the X-axis
 rotX = diag([1,-1,-1]);
 % 
 R1 = angle2dcm(euler(3), euler(2)-pi/2, -euler(1),'ZXZ'); %took a lot of work to figure this formula out !!

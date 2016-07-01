@@ -18,7 +18,7 @@ points = train_set.points;
 points_bak = points;
 points(isnan(points))=0;
 
-% Load setmentation masks
+% Load segmentation masks
 try
     seg.poly_x = train_set.poly_x;
     seg.poly_y = train_set.poly_y;

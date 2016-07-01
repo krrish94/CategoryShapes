@@ -34,14 +34,9 @@ for imgIdx = 8
     [~, name, ~] = fileparts(fileName);
     
     % Display the image
-    subplot(1,2,1);
     fileName = fullfile(paths.pascalImages, [name, '.jpg']);
     I = imread(fileName);
     imshow(I);
-    
-    [h, w, ~] = size(I);
-    mask = ones(h, w, 3);
-    mask = padarray(mask, [pad_size pad_size 0]);
     
     hold on;
     
@@ -65,6 +60,7 @@ for imgIdx = 8
         % Get the vertices and faces from the relevant CAD model
         cadIndex = object.cad_index;
         x3d = cads(cadIndex).vertices;
+        size(x3d)
         % Project them to 2D
         x2d = projectCADmodel(x3d, object);
         if isempty(x2d)
@@ -81,24 +77,8 @@ for imgIdx = 8
         vertices = [x2d(face(:,1),2) x2d(face(:,1),1) ...
             x2d(face(:,2),2) x2d(face(:,2),1) ...
             x2d(face(:,3),2) x2d(face(:,3),1)];
-        % BW is the mask
-        BW = mesh_test(vertices, h+2*pad_size, w+2*pad_size);
-        
-        % create a colorful mask
-        for j = 1:3
-            tmp = mask(:,:,j);
-            tmp(BW) = cmap(index_color,j);
-            mask(:,:,j) = tmp;
-        end
     end
     hold off;
-    
-    % Display the mask
-    subplot(1,2,2);
-    mask = mask(pad_size+1:h+pad_size, pad_size+1:w+pad_size,:);
-    imshow(uint8(255*mask));
-    axis off;
-    axis equal;
     
 end
 

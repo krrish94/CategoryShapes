@@ -1,4 +1,4 @@
-function [train_set,test_set] = prep_data(data,train_ratio,flip)
+function [train_set,test_set] = prep_data(data, train_ratio, flip)
 % PREP_DATA  Function to take data and normalize keypoints, filtered 
 % instances and generate train/test split (random).
 
